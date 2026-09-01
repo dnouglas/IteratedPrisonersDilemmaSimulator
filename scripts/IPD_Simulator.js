@@ -1,31 +1,46 @@
 "use strict";
 
 // Top level script for IPD webpage
-
 import { updateAlgorithm } from './Algorithm_Controller.js';
 import { simulateAlgorithms } from './Simulation_Run_Controller.js';
 import { setStatus, renderRounds, renderSummary } from "./Simulation_Render_Controller.js";
 
-// Simulation state guard
+// Simulation state variables
 let isRunning = false;
 let lastRunEndTime = 0;
-const REARM_DELAY_MS = 300;
 
+/*
+ * This buffer period is extra time to dispose of undesired click events that occurred while the simulation is running.
+ * Specifically, the simulation period after the await call, all the code after is placed on the microtask queue to run after the await resolves/rejects.
+ * Microtasks have higher priority than macrotasks (button click events), so buttons are reenabled before the button clicks are processed 
+ * causing the button event to trigger even though we don't want it to.
+ * Solution is to give a short buffer period to allow these button clicks to be processed and rejected
+ */
+const BUFFER_MS = 300;
+
+/*
+ * Helper function to determine if we can start a new simulation/reset the UI.
+ * Checks if no simulation is currently running and sufficient time has passed since the last simulation has run.
+ * 
+ * @returns {boolean}. true if the above condition is true. false otherwise.
+ */
 function canExecute() {
-  return !isRunning && (Date.now() - lastRunEndTime >= REARM_DELAY_MS)
+  return !isRunning && (Date.now() >= lastRunEndTime + BUFFER_MS);
 }
 
 /*
  * Retrieve the player algorithms and run the simulation.
- * This function is called when the user clicks the "Run Simulation" button, and a simulation is not already running.
+ * This function runs when the user clicks the "Run Simulation" button, and the simulation is able to be run.
  * 
  * @returns {void}. Output is rendered directly to the simulation output sections in IPD_Simulator.html
  */
 async function startSimulation() {
   if (!canExecute()) return;
+
+  // Begin simulation
   isRunning = true;
 
-  // Validate number of rounds before starting simulation
+  // Validate number of rounds
   const numRounds = parseInt(document.getElementById('numRounds').value, 10);
   if (!numRounds || numRounds < 1 || numRounds > 10000) {
     setStatus('Round count must be between 1 and 10,000.', 'err');
@@ -33,7 +48,7 @@ async function startSimulation() {
     return;
   }
 
-  // Disable buttons while the simulation is running.
+  // Visually disable buttons while the simulation is running.
   document.getElementById('runBtn').disabled = true;
   document.getElementById('resetBtn').disabled = true;
 
@@ -49,12 +64,17 @@ async function startSimulation() {
   // Try running the simulation
   try {
     const results = await simulateAlgorithms(code1, code2, numRounds);
+
+    //Everthing in this function below this line is a microtask
     renderRounds(results);
     renderSummary(results);
     setStatus('Done. ' + numRounds + ' rounds completed.', 'ok');
-  } catch(err) {
+  } 
+  catch(err) {
     setStatus('Error: ' + err.message, 'err');
-  } finally {
+  } 
+  // Update simulation state variables and visually reenable the buttons.
+  finally {
     isRunning = false;
     lastRunEndTime = Date.now();
     document.getElementById('runBtn').disabled = false;
@@ -64,7 +84,7 @@ async function startSimulation() {
 
 /*
  * Reset the simulation UI to its initial state.
- * This function is called when the user clicks the "Reset" button, and a simulation is not currently running.
+ * This function is run when the user clicks the "Reset" button, and it is able to be run.
  * 
  * @returns {void}. Output is rendered directly to the simulation output sections in IPD_Simulator.html
  */
@@ -94,6 +114,7 @@ function resetSimulation() {
 
   // Information Modal Event Listeners 
   document.getElementById('infoBtn').addEventListener('click', () => {
+    if (!canExecute()) return;
     document.getElementById('infoModal').classList.add('open');
   });
   document.getElementById('modalCloseBtn').addEventListener('click', () => {
