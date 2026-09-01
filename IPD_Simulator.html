@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iterated Prisoner's Dilemma Simulator</title>
+  <link rel="stylesheet" href="./styles/IPD_Simulator.css">
+  <script type="module" src="./scripts/IPD_Simulator.js" defer></script>
+</head>
+
+<body>
+<div class="wrap">
+
+  <!-- TITLE -->
+  <h1 class="app-title">ITERATED PRISONER'S DILEMMA SIMULATOR</h1>
+  <hr class="title-rule">
+
+  <!-- INFO & INSTRUCTIONS BUTTON -->
+  <div class="info-row">
+    <button class="btn" id="infoBtn">[ ? ] &nbsp; Information &amp; Instructions</button>
+  </div>
+
+  <!-- INFO & INSTRUCTIONS MODAL -->
+  <div class="modal-overlay" id="infoModal">
+    <div class="modal-box">
+      <button class="modal-close" id="modalCloseBtn" title="Close">✕</button>
+
+      <h2>Information &amp; Instructions</h2>
+
+      <h3>Background</h3>
+      <p>
+        The <strong>Prisoner's Dilemma</strong> is a classic problem in game theory. Two prisoners (players)
+        are interrogated separately and must each decide, without communication, whether to
+        <em>cooperate</em> (stay silent) or <em>defect</em> (betray the other). The <em>iterated</em>
+        version plays this game over many rounds, allowing strategies based on past decisions to emerge.
+      </p>
+      <p>
+        Robert Axelrod's famous 1980 computer tournament invited Game Theorists to submit strategies
+        to compete against each other. The best performing strategy was the deceptively simple 
+        <strong>Tit for Tat</strong>, written in just 4 lines of BASIC: cooperate on the first round, 
+        then mirror the opponent's last move (retaliate when and only when the opponent defects).
+      </p>
+
+      <h3>Payoff Structure</h3>
+      <p>The following conditions are required for a valid Iterated Prisoner's Dilemma: </p>
+      <ul>
+        <li>T &gt; R &gt; P &gt; S (Single Round Condition)</li>
+        <li>2R &gt; T + S (Iterative Condition)</li>
+      </ul>
+      <table>
+        <tr>
+          <th>Outcome</th><th>Symbol</th><th>Points</th><th>Condition</th>
+        </tr>
+        <tr>
+          <td>Temptation</td><td>T</td><td>5</td><td>You defect, opponent cooperates</td>
+        </tr>
+        <tr>
+          <td>Reward</td><td>R</td><td>3</td><td>Both cooperate</td>
+        </tr>
+        <tr>
+          <td>Punishment</td><td>P</td><td>1</td><td>Both defect</td>
+        </tr>
+        <tr>
+          <td>Sucker</td><td>S</td><td>0</td><td>You cooperate, opponent defects</td>
+        </tr>
+      </table>
+
+      <h3>How to Use</h3>
+      <ul>
+        <li>Select the number of rounds (1-10,000) and choose a strategy for each player.</li>
+        <li>Pick from the list of provided algorithms or select <strong>Custom Algorithm</strong> to write your own JavaScript.</li>
+        <li>Click <strong>▶ Run Simulation</strong>. Results of the simulation should appear instantly if both algorithms are runnable.</li>
+      </ul>
+
+      <h3>Writing a Custom Algorithm</h3>
+      <p>Your code runs as a JavaScript function body with these variables as input parameters:</p>
+      <ul>
+        <li><code>myMoves</code> — array of your past moves (<code>true</code>=cooperate, <code>false</code>=defect)</li>
+        <li><code>opponentMoves</code> — array of opponent's past moves</li>
+        <li><code>round</code> — current round index, 0-based. Size of each array is equal to the current round.</li>
+      </ul>
+      <p>Return <code>true</code> to cooperate or <code>false</code> to defect. See the provided algorithms for examples.</p>
+
+    </div>
+  </div>
+
+  <!-- ══════ CONTROL BAR ══════ -->
+  <div class="panel">
+    <div class="ctrl-bar">
+      <span class="ctrl-label">Rounds:</span>
+      <input type="number" class="ctrl-input" id="numRounds" value="10" min="1" max="10000">
+      <span class="payoff-note">Payoffs — T:5 &nbsp;R:3 &nbsp;P:1 &nbsp;S:0</span>
+      <button class="btn" id="runBtn">&#9654; Run Simulation</button>
+      <button class="btn" id="resetBtn">&#8635; Reset</button>
+      <span class="ctrl-spacer"></span>
+      <span class="status-bar" id="statusBar"></span>
+    </div>
+  </div>
+
+  <!-- ══════ PLAYERS ══════ -->
+  <div class="players-grid">
+    <!-- Player 1 -->
+    <div class="player-panel">
+      <div class="player-title">&#9632; Player 1</div>
+      <select class="algo-select" id="p1Strategy">
+        <option value="tft">Tit for Tat</option>
+        <option value="ac">Always Cooperate</option>
+        <option value="ad">Always Defect</option>
+        <option value="rand">Random</option>
+        <option value="grudge">Grudger (Grim Trigger)</option>
+        <option value="pavlov">Pavlov (Win-Stay, Lose-Shift)</option>
+        <option value="custom">Custom Algorithm</option>
+      </select>
+      <textarea class="code-ed" id="p1Code" spellcheck="false"></textarea>
+    </div>
+    <!-- Player 2 -->
+    <div class="player-panel">
+      <div class="player-title">&#9632; Player 2</div>
+      <select class="algo-select" id="p2Strategy">
+        <option value="tft">Tit for Tat</option>
+        <option value="ac">Always Cooperate</option>
+        <option value="ad">Always Defect</option>
+        <option value="rand">Random</option>
+        <option value="grudge">Grudger (Grim Trigger)</option>
+        <option value="pavlov">Pavlov (Win-Stay, Lose-Shift)</option>
+        <option value="custom">Custom Algorithm</option>
+      </select>
+      <textarea class="code-ed" id="p2Code" spellcheck="false"></textarea>
+    </div>
+  </div>
+
+  <!-- ══════ OUTPUT ══════ -->
+  <div class="output-grid">
+    <div class="panel">
+      <div class="panel-title">Simulation Output</div>
+      <div class="round-list-hdr">
+        <span>Round</span><span>Player 1</span><span>Player 2</span>
+      </div>
+      <div class="round-scroll" id="roundScroll">
+        <div class="out-empty" id="outEmpty">[ No simulation run yet ]</div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Summary</div>
+      <div id="summaryContent">
+        <div class="sum-empty">[ Run a simulation to see results ]</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
