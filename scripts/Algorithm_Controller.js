@@ -55,9 +55,9 @@ export function updateAlgorithm(player) {
         // Custom Algorithm
         custom: "// Custom Algorithm" + "\n"
             + "// Variables available:" + "\n"
-            + "//   myMoves[]       — your move history (true = cooperate, false = defect)" + "\n"
-            + "//   opponentMoves[] — opponent's move history" + "\n"
-            + "//   round           — current round index, 0-based" + "\n"
+            + "//    myMoves[]       — your move history (true = cooperate, false = defect)" + "\n"
+            + "//    opponentMoves[] — opponent's move history" + "\n"
+            + "//    round           — current round index, 0-based" + "\n"
             + "// Return true to cooperate, false to defect." + "\n"
             + "if (round === 0) return true;" + "\n"
             + "return opponentMoves[round - 1];"

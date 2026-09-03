@@ -34,13 +34,13 @@ body {
 
 /* Title Rules */
 #appTitle {
-    text-align: center;
-    padding: 22px 0 6px;
-    margin-bottom: 0px;
-    font-size: clamp(0.95rem, 2.6vw, 1.55rem);
-    font-weight: bold;
-    letter-spacing: 0.22em;
-    color: var(--gold);
+  text-align: center;
+  padding: 22px 0 6px;
+  margin-bottom: 0px;
+  font-size: clamp(0.95rem, 2.6vw, 1.55rem);
+  font-weight: bold;
+  letter-spacing: 0.22em;
+  color: var(--gold);
 }
 
 #titleRule {

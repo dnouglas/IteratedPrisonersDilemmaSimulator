@@ -47,28 +47,18 @@
         <li>2R &gt; T + S (Iterative Condition)</li>
       </ul>
       <table>
-        <tr>
-          <th>Outcome</th><th>Symbol</th><th>Points</th><th>Condition</th>
-        </tr>
-        <tr>
-          <td>Temptation</td><td>T</td><td>5</td><td>You defect, opponent cooperates</td>
-        </tr>
-        <tr>
-          <td>Reward</td><td>R</td><td>3</td><td>Both cooperate</td>
-        </tr>
-        <tr>
-          <td>Punishment</td><td>P</td><td>1</td><td>Both defect</td>
-        </tr>
-        <tr>
-          <td>Sucker</td><td>S</td><td>0</td><td>You cooperate, opponent defects</td>
-        </tr>
+        <tr><th>Outcome</th><th>Symbol</th><th>Points</th><th>Condition</th></tr>
+        <tr><td>Temptation</td><td>T</td><td>5</td><td>You defect, opponent cooperates</td></tr>
+        <tr><td>Reward</td><td>R</td><td>3</td><td>Both cooperate</td></tr>
+        <tr><td>Punishment</td><td>P</td><td>1</td><td>Both defect</td></tr>
+        <tr><td>Sucker</td><td>S</td><td>0</td><td>You cooperate, opponent defects</td></tr>
       </table>
 
       <h3>How to Use</h3>
       <ul>
         <li>Select the number of rounds (1-10,000) and choose a strategy for each player.</li>
         <li>Pick from the list of provided algorithms or select <strong>Custom Algorithm</strong> to write your own JavaScript.</li>
-        <li>Click <strong>▶ Run Simulation</strong>. Results of the simulation should appear instantly if both algorithms are runnable.</li>
+        <li>Click <strong>▶ Run Simulation</strong>. Results of the simulation should appear if both algorithms are runnable.</li>
       </ul>
 
       <h3>Writing a Custom Algorithm</h3>
@@ -79,7 +69,6 @@
         <li><code>round</code> — current round index, 0-based. Size of each array is equal to the current round.</li>
       </ul>
       <p>Return <code>true</code> to cooperate or <code>false</code> to defect. See the provided algorithms for examples.</p>
-
     </div>
   </div>
 
@@ -123,7 +112,7 @@
         <option value="pavlov">Pavlov (Win-Stay, Lose-Shift)</option>
         <option value="custom">Custom Algorithm</option>
       </select>
-      <textarea class="sim-code" id="p2Code" spellcheck="false"></textarea>
+      <textarea class="algo-code" id="p2Code" spellcheck="false"></textarea>
     </div>
   </div>
 

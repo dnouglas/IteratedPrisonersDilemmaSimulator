@@ -8,9 +8,9 @@
  * @returns {void}. Output is written directly to the status bar in IPD_Simulator.html
  */
 export function setStatus(msg, cls) {
-  const el = document.getElementById('statusBar');
-  el.textContent = msg;
-  el.className = cls;
+    const el = document.getElementById('statusBar');
+    el.textContent = msg;
+    el.className = cls;
 }
 
 /* 
@@ -24,12 +24,12 @@ export function setStatus(msg, cls) {
  * @returns {Array} - [p1, p2] - the payoff for player 1 and player 2 respectively.
  */
 function calcPayoffs(m1, m2) {
-  const TEMPTATION = 5, REWARD = 3, PUNISHMENT = 1, SUCKER = 0;
+    const TEMPTATION = 5, REWARD = 3, PUNISHMENT = 1, SUCKER = 0;
 
-  if (m1 === true && m2 === true) return [REWARD, REWARD];
-  if (m1 === false && m2 === false) return [PUNISHMENT, PUNISHMENT];
-  if (m1 === false && m2 === true) return [TEMPTATION, SUCKER];
-  if (m1 === true && m2 === false) return [SUCKER, TEMPTATION];
+    if (m1 === true && m2 === true) return [REWARD, REWARD];
+    if (m1 === false && m2 === false) return [PUNISHMENT, PUNISHMENT];
+    if (m1 === false && m2 === true) return [TEMPTATION, SUCKER];
+    if (m1 === true && m2 === false) return [SUCKER, TEMPTATION];
 }
 
 /*
@@ -40,30 +40,30 @@ function calcPayoffs(m1, m2) {
  * @returns {void}. Output is written directly to the Simulation Output section in IPD_Simulator.html
  */
 export function renderRounds(results) {
-  const scroll = document.getElementById('roundScroll');
+    const scroll = document.getElementById('roundScroll');
 
-  // Create HTML results for each round.
-  let html = ``;
-  for (let i = 0; i < results.length; i++) {
-    const [move1, move2] = results[i];
-    const [payoff1, payoff2] = calcPayoffs(move1, move2);
+    // Create HTML results for each round.
+    let html = ``;
+    for (let i = 0; i < results.length; i++) {
+        const [move1, move2] = results[i];
+        const [payoff1, payoff2] = calcPayoffs(move1, move2);
+        
+        html += `<div class="round-row">
+                    <span class="r-num"> #${i+1} </span>
+                    <span class="r-move">
+                        <span class="badge badge-${(move1 ? 'c' : 'd')}"> ${(move1 ? 'C' : 'D')} </span>
+                        <span class="r-pts"> +${payoff1} </span>
+                    </span>
+                    <span class="r-move">
+                        <span class="badge badge-${(move2 ? 'c' : 'd')}"> ${(move2 ? 'C' : 'D')} </span>
+                        <span class="r-pts"> +${payoff2} </span>
+                    </span>
+                 </div>`;
+    }
 
-    html += `<div class="round-row">
-                <span class="r-num"> #${i+1} </span>
-                <span class="r-move">
-                    <span class="badge badge-${(move1 ? 'c' : 'd')}"> ${(move1 ? 'C' : 'D')} </span>
-                    <span class="r-pts"> +${payoff1} </span>
-                </span>
-                <span class="r-move">
-                    <span class="badge badge-${(move2 ? 'c' : 'd')}"> ${(move2 ? 'C' : 'D')} </span>
-                    <span class="r-pts"> +${payoff2} </span>
-                </span>
-             </div>`;
-  }
-
-  // Render the html to Simulation Output and scroll to the bottom.
-  scroll.innerHTML = html;
-  scroll.scrollTop = scroll.scrollHeight;
+    // Render the html to Simulation Output and scroll to the bottom.
+    scroll.innerHTML = html;
+    scroll.scrollTop = scroll.scrollHeight;
 }
 
 /*
