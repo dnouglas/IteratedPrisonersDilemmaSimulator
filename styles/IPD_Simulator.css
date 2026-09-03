@@ -1,0 +1,91 @@
+@import "./Info_Modal_Styles.css"; /* Popup Modal Styles */
+@import "./Player_Control_Styles.css"; /* Styles for User Input Elements */
+@import "./Simulation_Output_Styles.css"; /* Styles for Simulation Output Elements */
+
+
+/* Global Color Styles */
+:root {
+  --bg:         #090907;
+  --border:     #2e2c18;
+  --border-hi:  #5a5228;
+  --gold:       #c8a84b;
+  --gold-dim:   #7a6228;
+  --text:       #c4bc9c;
+  --text-dim:   #686050;
+  --text-faint: #302e20;
+  --code-text:  #7ac87a;
+  --rule:       1px solid var(--border);
+}
+
+
+/* Content Wrapper Styles */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  min-height: 100vh;
+  padding: 14px 16px 40px;
+  max-width: 1180px; 
+  margin: 0 auto; 
+}
+
+
+/* Title Rules */
+#appTitle {
+    text-align: center;
+    padding: 22px 0 6px;
+    margin-bottom: 0px;
+    font-size: clamp(0.95rem, 2.6vw, 1.55rem);
+    font-weight: bold;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+}
+
+#titleRule {
+  border: none;
+  border-top: 1px solid var(--gold-dim);
+  margin: 10px 0 18px;
+}
+
+
+/* Button Rules */
+.btn {
+  cursor: pointer;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  border: 1px solid var(--border-hi);
+  background: transparent;
+  color: var(--gold);
+  padding: 5px 14px;
+  white-space: nowrap;
+
+  &:hover {
+    background: var(--gold-dim); 
+    color: var(--bg); 
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}
+
+
+/* Panel Rules */
+.panel {
+  background-color: #111110;
+  border: var(--rule);
+  padding: 14px 18px;
+  margin-bottom: 14px;
+}
+
+.panel-title {
+  color: var(--gold);
+  border-bottom: var(--rule);
+  padding-bottom: 7px;
+  margin-bottom: 12px;
+}

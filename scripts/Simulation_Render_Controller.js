@@ -10,7 +10,7 @@
 export function setStatus(msg, cls) {
   const el = document.getElementById('statusBar');
   el.textContent = msg;
-  el.className = 'status-bar' + (cls ? ' ' + cls : '');
+  el.className = cls;
 }
 
 /* 
@@ -102,13 +102,13 @@ export function renderSummary(results){
     else if (finalScores.p1FinalScore < finalScores.p2FinalScore) lead = 'P2 Leads';
 
     document.getElementById('summaryContent').innerHTML =
-        `<div class="score-display">
+        `<div id="scoreDisplay">
             <div class="score-blk">
                 <div class="score-lbl">Player 1</div>
                 <div class="score-num">${finalScores.p1FinalScore}</div>
                 <div class="score-sub">pts</div>
             </div>
-            <div class="vs-sep">vs</div>
+            <div id="vsSep">vs</div>
             <div class="score-blk">
                 <div class="score-lbl">Player 2</div>
                 <div class="score-num">${finalScores.p2FinalScore}</div>
@@ -116,28 +116,28 @@ export function renderSummary(results){
             </div>
          </div>
          <div class="stat-line">
-            <span class="stat-k">Rounds</span>
-            <span class="stat-v">${results.length}</span>
+            <span class="stat-key">Rounds</span>
+            <span class="stat-value">${results.length}</span>
          </div>
          <div class="stat-line">
-            <span class="stat-k">Standing</span>
-            <span class="stat-v hi">${lead}</span>
+            <span class="stat-key">Standing</span>
+            <span class="stat-value hi">${lead}</span>
          </div>
          <div class="stat-line">
-            <span class="stat-k">P1 &mdash; Cooperations</span>
-            <span class="stat-v">${moveCounts.p1Cooperations}&times;</span>
+            <span class="stat-key">P1 &mdash; Cooperations</span>
+            <span class="stat-value">${moveCounts.p1Cooperations}&times;</span>
          </div>
          <div class="stat-line">
-            <span class="stat-k">P1 &mdash; Defections</span>
-            <span class="stat-v">${moveCounts.p1Defections}&times;</span>
+            <span class="stat-key">P1 &mdash; Defections</span>
+            <span class="stat-value">${moveCounts.p1Defections}&times;</span>
          </div>
          <div class="stat-line">
-            <span class="stat-k">P2 &mdash; Cooperations</span>
-            <span class="stat-v">${moveCounts.p2Cooperations}&times;</span>
+            <span class="stat-key">P2 &mdash; Cooperations</span>
+            <span class="stat-value">${moveCounts.p2Cooperations}&times;</span>
          </div>
          <div class="stat-line">
-            <span class="stat-k">P2 &mdash; Defections</span>
-            <span class="stat-v">${moveCounts.p2Defections}&times;</span>
+            <span class="stat-key">P2 &mdash; Defections</span>
+            <span class="stat-value">${moveCounts.p2Defections}&times;</span>
          </div>
         `;
 }

@@ -41,7 +41,7 @@ async function startSimulation() {
   isRunning = true;
 
   // Validate number of rounds
-  const numRounds = parseInt(document.getElementById('numRounds').value, 10);
+  const numRounds = parseInt(document.getElementById('numRoundsInput').value, 10);
   if (!numRounds || numRounds < 1 || numRounds > 10000) {
     setStatus('Round count must be between 1 and 10,000.', 'err');
     isRunning = false;
