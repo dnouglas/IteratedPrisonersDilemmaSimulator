@@ -13,27 +13,27 @@ export function updateAlgorithm(player) {
     // Algorithms
     const ALGORITHMS = {
         // Always Cooperate
-        ac: "// Always Cooperate" + "\n"
+        ac: "// Always Cooperate" + "\n\n"
             + "return true;",
         
         // Always Defect
-        ad: "// Always Defect" + "\n"
+        ad: "// Always Defect" + "\n\n"
             + "return false;" ,
         
         // Tit for Tat
         tft: "// Tit for Tat" + "\n" 
-            + "// Cooperate on round 0, then copy opponent's last move" + "\n"
+            + "// Cooperate on round 0, then copy opponent's last move" + "\n\n"
             + "if (round === 0) return true;" + "\n"
             + "return opponentMoves[round - 1];",
 
         // Random
         rand: "// Random" + "\n"
-            + "// Cooperate or defect with equal probability" + "\n"
+            + "// Cooperate or defect with equal probability" + "\n\n"
             + "return Math.random() < 0.5;",
 
         // Grim Trigger
         grudge: "// Grudger (Grim Trigger)" + "\n"
-            + "// Cooperate until opponent defects once — then defect forever" + "\n"
+            + "// Cooperate until opponent defects once — then defect forever" + "\n\n"
             + "for (let i = 0; i < opponentMoves.length; i++) {" + "\n"
             + "  if (opponentMoves[i] === false) return false;" + "\n"
             + "}" + "\n"
@@ -43,7 +43,7 @@ export function updateAlgorithm(player) {
         pavlov: "// Pavlov (Win-Stay, Lose-Shift)" + "\n"
             + "// Cooperate first round." + "\n"
             + "// If last outcome was R (coop+coop) or T (defect+coop): repeat last move." + "\n"
-            + "// If last outcome was P (defect+defect) or S (coop+defect): switch." + "\n"
+            + "// If last outcome was P (defect+defect) or S (coop+defect): switch." + "\n\n"
             + "if (round === 0) return true;" + "\n"
             + "let me = myMoves[round - 1];" + "\n"
             + "let opp = opponentMoves[round - 1];" + "\n"
@@ -58,7 +58,7 @@ export function updateAlgorithm(player) {
             + "//    myMoves[]       — your move history (true = cooperate, false = defect)" + "\n"
             + "//    opponentMoves[] — opponent's move history" + "\n"
             + "//    round           — current round index, 0-based" + "\n"
-            + "// Return true to cooperate, false to defect." + "\n"
+            + "// Return true to cooperate, false to defect." + "\n\n"
             + "if (round === 0) return true;" + "\n"
             + "return opponentMoves[round - 1];"
     };

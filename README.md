@@ -90,7 +90,7 @@ The strategies/algorithms themselves are written using JavaScript code. A few pr
 - **opponentMoves[]** - array of opponent's past moves
 - **round** - current round index, 0-based. The size of each array is equal to the current round.
 
-Given these inputs, your code must decide whether to cooperate (return true) or defect (return false) for the current round. Once the two strategies are specified, you can begin the simulation and it will run the two algorithms against each other for the specified number of rounds (see Simulation_Run_Worker.js if curious about how exactly the two algorithms are run against each other) and output the results to the webpage if the simulation was successful. 
+Given these inputs, your code must decide whether to cooperate (return true) or defect (return false) for the current round. Note that returning anything other than true in your algorithm will internally default to returning false. Once the two strategies are specified, you can begin the simulation and it will run the two algorithms against each other for the specified number of rounds (see Simulation_Run_Worker.js if curious about how exactly the two algorithms are run against each other) and output the results to the webpage if the simulation was successful. 
 
 Here is an example of a valid strategy that can be run in the simulator. Specifically, this is the code for the Tit for Tat strategy:
 
