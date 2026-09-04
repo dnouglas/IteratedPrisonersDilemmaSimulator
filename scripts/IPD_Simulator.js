@@ -93,8 +93,8 @@ function resetSimulation() {
 	if (!canExecute()) 
 		return;
 
-	document.getElementById('roundScroll').innerHTML = '<div class="out-empty">[ No simulation run yet ]</div>';
-	document.getElementById('summaryContent').innerHTML = '<div class="sum-empty">[ Run a simulation to see results ]</div>';
+	document.getElementById('roundScroll').innerHTML = '<div id="outEmpty">[ No simulation run yet ]</div>';
+	document.getElementById('summaryContent').innerHTML = '<div id="sumEmpty">[ Run a simulation to see results ]</div>';
 	setStatus('', '');
 }
 
