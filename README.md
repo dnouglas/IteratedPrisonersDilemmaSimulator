@@ -32,15 +32,17 @@ We can generalize this scenario as such: Suppose two players must choose (withou
 2. **One Player Defects, One Player Cooperates**: The defecting player receives a temptation payoff with value $T$, while the cooperating player receives a sucker payoff with value $S$.
 3. **Both Defect**: Each player receives a punishment payoff with value $P$.
 
-The following condition must hold for the scenario to be a valid Prisoner's Dilemma Game: $$ T > R > P > S $$
+The following condition must hold for the scenario to be a valid Prisoner's Dilemma Game: 
+
+$$T>R>P>S$$
 - The relationships $T > R$ and $P > S$ imply that defection is the optimal choice for each player.
 - The relationship $R > P$ implies that mutual cooperation yields a higher payoff than mutual defection.
 
 In our original scenario, the payoff values would be as such:
-- $ T = 0 $ (Prisoner goes free)
-- $ R = -1 $ (1 year in prison)
-- $ P = -2 $ (2 years in prison)
-- $ S = -3 $ (3 years in prison)
+- $T=0$ (Prisoner goes free)
+- $R=-1$ (1 year in prison)
+- $P=-2$ (2 years in prison)
+- $S=-3$ (3 years in prison)
 
 </br>
 
@@ -48,7 +50,9 @@ In our original scenario, the payoff values would be as such:
 
 The iterated version of the Prisoner's Dilemma plays the game over many rounds, allowing strategies based on past decisions to emerge. Each player now remembers their opponent's actions in previous rounds (as well as their own previous actions), and can change their decision to cooperate/defect based on these past actions. 
 
-Each round takes on the generalized form of the original Prisoner's Dilemma game as described earlier. The interated version also requires the following condition to ensure that alternating cooperation and defection does not give a greater reward than mutual cooperation: $$ 2R > T + S $$
+Each round takes on the generalized form of the original Prisoner's Dilemma game as described earlier. The interated version also requires the following condition to ensure that alternating cooperation and defection does not give a greater reward than mutual cooperation: 
+
+$$2R>T+S$$
 
 The optimal strategy depends on the number of rounds played. If the game is played for a finite number of rounds, and both players know this, then the optimal strategy for each player is to defect in all rounds. Why is that? In the last round, the players might as well defect since there are no later chances to retaliate. Thus, both players optimally defect on the last turn. But this means that the players might as well defect in the second-to-last round as well, since the other player will defect in the last round no matter what. This rationale cascades all the way to each player optimally defecting on the first round, implying that the optimal strategy is to always defect. Note however that mutual cooperation in every round still yields a higher payoff for both players. If the game is played for an indefinite/unknown or infinite number of rounds, then studies have shown that strategies tend to shift towards mutual cooperation over time. 
 
