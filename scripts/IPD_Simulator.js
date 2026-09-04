@@ -55,7 +55,7 @@ async function startSimulation() {
 
 	// Set up blank slate for simulation output
 	document.getElementById('roundScroll').innerHTML = '';
-	document.getElementById('summaryContent').innerHTML = '<div class="sum-empty">[ Running... ]</div>';
+	document.getElementById('summaryContent').innerHTML = '<div id="sumEmpty">[ Running... ]</div>';
 	setStatus('Computing ' + numRounds + ' rounds...', '');
 
 	// Retrieve both player algorithms
