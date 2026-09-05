@@ -1,6 +1,6 @@
 "use strict";
 
-/*
+/**
  * Run the two algorithms against each other for the specified number of rounds.
  * Run within a Web Worker to prevent malicious/erroneous code from affecting the main page.
  * Using a Web Worker also runs the simulation on a separate thread, so we don't have to worry about 

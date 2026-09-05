@@ -18,21 +18,21 @@ let lastRunEndTime = 0;
  */
 const BUFFER_MS = 300;
 
-/*
+/**
  * Helper function to determine if we can start a new simulation/reset the UI.
  * Checks if no simulation is currently running and sufficient time has passed since the last simulation has run.
  * 
- * @returns {boolean}. true if the above condition is true. false otherwise.
+ * @returns {boolean} true if the above condition is true, false otherwise.
  */
 function canExecute() {
 	return !isRunning && (Date.now() >= lastRunEndTime + BUFFER_MS);
 }
 
-/*
+/**
  * Retrieve the player algorithms and run the simulation.
  * This function runs when the user clicks the "Run Simulation" button, and the simulation is able to be run.
  * 
- * @returns {void}. Output is rendered directly to the simulation output sections in IPD_Simulator.html
+ * @returns {void} Output is rendered directly to the simulation output sections in IPD_Simulator.html
  */
 async function startSimulation() {
 	if (!canExecute()) 
@@ -83,11 +83,11 @@ async function startSimulation() {
 	}
 }
 
-/*
+/**
  * Reset the simulation UI to its initial state.
  * This function is run when the user clicks the "Reset" button, and it is able to be run.
  * 
- * @returns {void}. Output is rendered directly to the simulation output sections in IPD_Simulator.html
+ * @returns {void} Output is rendered directly to the simulation output sections in IPD_Simulator.html
  */
 function resetSimulation() {
 	if (!canExecute()) 

@@ -1,13 +1,13 @@
 "use strict";
 
-/*
+/**
  * Updates the player's algorithm code based on the selected strategy.
  * Custom Algorithm provides a placeholder code template for users to modify.
  * All other algorithms are unmodifiable.
- * Use when the strategy dropdown changes and when the page is initialized. 
+ * Used when the strategy dropdown changes and when the page is initialized. 
  * 
  * @param {number} player - The player number (1 or 2).
- * @returns {void}. Output is written directly to the corresponding textarea. in IPD_Simulator.html
+ * @returns {void} Output is written directly to the corresponding textarea in IPD_Simulator.html
  */
 export function updateAlgorithm(player) {
     // Algorithms

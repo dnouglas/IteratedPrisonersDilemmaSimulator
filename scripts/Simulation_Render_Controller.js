@@ -1,11 +1,11 @@
 "use strict";
 
-/*
+/**
  * Update simulation status bar.
  * 
  * @param {string} msg - The message to display in the status bar.
  * @param {string} cls - class to apply to the status bar for CSS styling ('', 'err', or 'ok').
- * @returns {void}. Output is written directly to the status bar in IPD_Simulator.html
+ * @returns {void} Output is written directly to the status bar in IPD_Simulator.html
  */
 export function setStatus(msg, cls) {
     const el = document.getElementById('statusBar');
@@ -13,7 +13,7 @@ export function setStatus(msg, cls) {
     el.className = cls;
 }
 
-/* 
+/** 
  * Helper function, calculates the payoff for each player based on their moves. 
  *
  * Payoff Conditions: 
@@ -32,12 +32,12 @@ function calcPayoffs(m1, m2) {
     if (m1 === true && m2 === false) return [SUCKER, TEMPTATION];
 }
 
-/*
+/**
  * Render simulation output.
  * Format of each round render is Round #, Player 1 Move, Player 1 Points, Player 2 Move, Player 2 Points
  * 
  * @param {Array} results - An array of [p1Move, p2Move] for each round.
- * @returns {void}. Output is written directly to the Simulation Output section in IPD_Simulator.html
+ * @returns {void} Output is written directly to the Simulation Output section in IPD_Simulator.html
  */
 export function renderRounds(results) {
     const scroll = document.getElementById('roundScroll');
@@ -66,11 +66,11 @@ export function renderRounds(results) {
     scroll.scrollTop = scroll.scrollHeight;
 }
 
-/*
+/**
  * Render simulation summary.
  * 
  * @param {Array} results - An array of [p1Move, p2Move] for each round.
- * @returns {void}. Output is written directly to the Summary section in IPD_Simulator.html
+ * @returns {void} Output is written directly to the Summary section in IPD_Simulator.html
  */
 export function renderSummary(results){
     // Calculate number of cooperations and defections for each player
